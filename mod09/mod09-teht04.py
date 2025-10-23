@@ -21,23 +21,27 @@ for i in range(1, 11):
     car = Car(i)
     cars.append(car)
 
-winner = None
+winner = None # luodaan voittaja kisan päättäväksi tekijäksi
 round = 0
 while not winner:
-    round += 1
+    round += 1 #jokainen kierros ilmaisee "tuntia", sillä arvotun nykyisen nopeuden (km/h) arvo lisätään edelliseen
+                # nopeuteen, josta tulee kierroksittain kokonaismatka
     print(f"Round {round}!")
     for car in cars:
         car.accelerate()
         car.trip_length()
         print(f"Car {car.name} current speed is {car.speed}km/h and driven distance {car.trip}km")
-        if car.trip >= 10000:
+        if car.trip >= 10000: # kisa päättyy kun jokin autoista ylittää 10000km
             winner = car
-            print("\n")
+            input("Press enter to continue...")
             break
 
-print(f"The winner was {winner.name} with a top speed of {winner.top_speed}km/h and total driven distance {winner.trip}km\n")
-
+# printataan voittajan statistiikat
+print(f"\nThe winner was {winner.name} with a top speed of {winner.top_speed}km/h and total driven distance {winner.trip}km\n")
+input("Press enter to continue...")
+#ja lopuksi kaikkien autojen statistiikat
+print("\nStatistics for all cars:")
 for car in cars:
-    print(f"Car {car.name} top speed was {car.top_speed}km/h and total driven distance {car.trip}km")
+    print(f"Car {car.name}'s top speed is {car.top_speed}km/h and total driven distance {car.trip}km")
 
 
